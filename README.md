@@ -1,6 +1,8 @@
 ## What
 This is a simple multiplication table quiz web app. Born as PWA playable offline.
 
+[Demo](https://www.rain1.it/tabelline/)
+
 ## Why
 Because I have a son who is in 2nd elementary school and I wanted to build something for him without annoying ad.
 
