@@ -1,6 +1,6 @@
 export default {
 	pageTitle              : "Tabelline",
-	endMessage             : "Bravissimo! Hai completato tutte le tabelline con un punteggio di %d",
+	endMessage             : "Eccellente! Hai completato tutte le tabelline con un punteggio di %d",
 	whatsYourName          : "Come ti chiami?",
 	whichMultiTable        : "Quali tabelline vuoi ripetere?",
 	letsStart              : "Comincia!",
