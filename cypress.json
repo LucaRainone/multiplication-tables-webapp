@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:9981/",
+  "pluginsFile" : false,
+  "supportFile" : false,
+  "fixturesFolder" : false
+}

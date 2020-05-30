@@ -1,0 +1,41 @@
+<!doctype html>
+<html class="no-js" lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Tabelline</title>
+    <meta name="description" content="Impara le tabelline come in un gioco a quiz">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="img/icon-32.png" type="image/x-icon">
+    <!-- don't include from here -->
+    <link rel="stylesheet/less" type="text/css" href="less/style.less"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js"></script>
+    <!-- to here -->
+    <!-- bundle.css -->
+</head>
+<body>
+<div class="page">
+    <header class="page-header">
+        <h1 id="mainTitle"></h1>
+    </header>
+    <main class="page-content" id="gameboard">
+
+    </main>
+    <footer class="page-footer" id="footer">
+        <div class="wrapper">
+            <div class="page-footer-left" id="points">0</div>
+            <div class="page-footer-right">
+                <div class="progressbar">
+                    <div class="progressbar-bar" id="bar" style="width:0%"></div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</div>
+<!-- bundle.js -->
+<!-- don't include from here -->
+<script type="module" src="js/main.js"></script>
+<!-- to here -->
+</body>
+</html>
