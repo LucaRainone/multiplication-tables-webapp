@@ -10,8 +10,12 @@ const buffer     = require('vinyl-buffer');
 const uglify     = require('gulp-uglify');
 const replace    = require('gulp-replace');
 const {watch}    = require('gulp');
+const crypto     = require('crypto');
 
+const args = process.argv.slice(2);
+const BUILD4PRODUCTION = args[0] === "--env" && args[1] === "production";
 
+const suffix = BUILD4PRODUCTION? (+new Date()/1000)|0 : "";
 const staticFiles = ['src/**/*',
                      '!src/index.html',
                      '!src/sw.js',
@@ -27,13 +31,19 @@ function javascriptTask() {
 	                   })
 	.transform("babelify", {presets : ["@babel/preset-env"], plugins : ["@babel/plugin-proposal-class-properties"]})
 	return b.bundle()
-	.pipe(source('app.js'))
+	.pipe(source(`app${suffix}.js`))
 	.pipe(buffer())
 	.pipe(uglify())
 	.on('error', function (e) {
 		console.error(e)
 	})
 	.pipe(gulp.dest('./dist/js/'));
+}
+
+function hashFile(filename) {
+
+	var hash = crypto.createHash('md5').update(name).digest('hex');
+	console.log(hash);
 }
 
 function serviceWorkerTask() {
@@ -72,7 +82,7 @@ function lessTask() {
 	.pipe(less({
 		           paths : [path.join(__dirname, 'less')]
 	           }))
-	.pipe(concat('style.css'))
+	.pipe(concat(`style${suffix}.css`))
 	.pipe(cssnano())
 	.pipe(gulp.dest('./dist/css'));
 }
@@ -90,8 +100,8 @@ function copyStatic() {
 function buildIndex() {
 	return gulp.src(['src/index.html'])
 	.pipe(replace(/<!--\s*don't include from here\s*-->[.\s\S]*?<!--\s*to here\s*-->/mg, ''))
-	.pipe(replace('<!-- bundle.js -->', '<script type="text/javascript" src="js/app.js"></script>'))
-	.pipe(replace('<!-- bundle.css -->', '<link rel="stylesheet" type="text/css" href="css/style.css" />'))
+	.pipe(replace('<!-- bundle.js -->', `<script type="text/javascript" src="js/app${suffix}.js"></script>`))
+	.pipe(replace('<!-- bundle.css -->', `<link rel="stylesheet" type="text/css" href="css/style${suffix}.css" />`))
 	.pipe(gulp.dest('dist/'));
 }
 
