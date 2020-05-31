@@ -13,8 +13,20 @@ const {watch}    = require('gulp');
 const crypto     = require('crypto');
 
 const args = process.argv.slice(2);
-const BUILD4PRODUCTION = args[0] === "--env" && args[1] === "production";
+let BUILD4PRODUCTION = false;
+let absoluteBasePath = "";
+for(let i = 0; i <args.length; i++) {
+	if(args[i] === '--env') {
+		BUILD4PRODUCTION = 'production' === args[++i];
+	}else if(args[i] === '--basepath') {
+		absoluteBasePath = args[++i];
+	}
+}
 
+if(absoluteBasePath && !absoluteBasePath.match(/\/$/))
+	absoluteBasePath += "/";
+
+console.log({absoluteBasePath})
 const suffix = BUILD4PRODUCTION? (+new Date()/1000)|0 : "";
 const staticFiles = ['src/**/*',
                      '!src/index.html',
@@ -99,9 +111,10 @@ function copyStatic() {
 
 function buildIndex() {
 	return gulp.src(['src/index.html'])
-	.pipe(replace(/<!--\s*don't include from here\s*-->[.\s\S]*?<!--\s*to here\s*-->/mg, ''))
+	.pipe(replace(/<!--\s*cut from here\s*-->[.\s\S]*?<!--\s*to here\s*-->/mg, ''))
 	.pipe(replace('<!-- bundle.js -->', `<script type="text/javascript" src="js/app${suffix}.js"></script>`))
 	.pipe(replace('<!-- bundle.css -->', `<link rel="stylesheet" type="text/css" href="css/style${suffix}.css" />`))
+	.pipe(replace(/<meta .*?property="og:image".*?content="(.+?)">/, `<meta property="og:image" content="${absoluteBasePath}$1">`))
 	.pipe(gulp.dest('dist/'));
 }
 
