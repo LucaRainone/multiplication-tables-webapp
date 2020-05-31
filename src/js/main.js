@@ -14,7 +14,7 @@ function main() {
 	const gameBoard = getElement('gameboard');
 	const footer    = getElement('footer');
 
-	getElement('mainTitle').innerHTML = locale.pageTitle
+	getElement('mainTitle').innerHTML = document.title =  locale.pageTitle;
 
 	footer.style.display = "none";
 	askMultiToReview.show("", gameBoard, (multitable) => {
