@@ -1,5 +1,6 @@
 export default {
 	pageTitle              : "Tabelline",
+	metaDescription        : "Impara le tabelline come in un gioco a quiz",
 	endMessage             : "Eccellente! Hai completato tutte le tabelline con un punteggio di %d",
 	whatsYourName          : "Come ti chiami?",
 	whichMultiTable        : "Quali tabelline vuoi ripetere?",
