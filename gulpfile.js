@@ -10,7 +10,13 @@ const buffer     = require('vinyl-buffer');
 const uglify     = require('gulp-uglify');
 const replace    = require('gulp-replace');
 const {watch}    = require('gulp');
-const crypto     = require('crypto');
+
+let locale = {};
+
+function _updateLang() {
+	let code = require("@babel/core").transformFileSync('./src/js/locale/it.js', {presets : ["@babel/preset-env"]});
+	eval('locale = (function() {' + code.code + '; return exports["default"]})();');
+}
 
 const args = process.argv.slice(2);
 let BUILD4PRODUCTION = false;
@@ -26,7 +32,7 @@ for(let i = 0; i <args.length; i++) {
 if(absoluteBasePath && !absoluteBasePath.match(/\/$/))
 	absoluteBasePath += "/";
 
-console.log({absoluteBasePath})
+
 const suffix = BUILD4PRODUCTION? (+new Date()/1000)|0 : "";
 const staticFiles = ['src/**/*',
                      '!src/index.html',
@@ -50,12 +56,6 @@ function javascriptTask() {
 		console.error(e)
 	})
 	.pipe(gulp.dest('./dist/js/'));
-}
-
-function hashFile(filename) {
-
-	var hash = crypto.createHash('md5').update(name).digest('hex');
-	console.log(hash);
 }
 
 function serviceWorkerTask() {
@@ -110,11 +110,14 @@ function copyStatic() {
 }
 
 function buildIndex() {
+	_updateLang();
 	return gulp.src(['src/index.html'])
 	.pipe(replace(/<!--\s*cut from here\s*-->[.\s\S]*?<!--\s*to here\s*-->/mg, ''))
 	.pipe(replace('<!-- bundle.js -->', `<script type="text/javascript" src="js/app${suffix}.js"></script>`))
 	.pipe(replace('<!-- bundle.css -->', `<link rel="stylesheet" type="text/css" href="css/style${suffix}.css" />`))
 	.pipe(replace(/<meta .*?property="og:image".*?content="(.+?)">/, `<meta property="og:image" content="${absoluteBasePath}$1">`))
+	.pipe(replace(/<title>.*?<\/title>/,`<title>${locale.pageTitle}</title>`))
+	.pipe(replace(/(<meta .*?name="description".*?content=)"(.*?)"(.*?>)/,`$1${JSON.stringify(locale.metaDescription)}$3`))
 	.pipe(gulp.dest('dist/'));
 }
 
