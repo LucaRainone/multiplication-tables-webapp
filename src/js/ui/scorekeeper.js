@@ -1,12 +1,12 @@
-class Progressbar {
+class Scorekeeper {
 	timerOn     = false;
-	points4win  = 100;
-	points4lose = -50;
 	points      = 0;
 
-	constructor(barSpan, pointsSPan, totalQuestions) {
+	constructor(barSpan, pointsSPan, {totalQuestions, points4win = 100, points4lose = -50 }) {
 		this.barSpan    = barSpan;
 		this.pointsSpan = pointsSPan;
+		this.points4win = points4win;
+		this.points4lose = points4lose;
 		this.maxPoints  = totalQuestions * this.points4win - totalQuestions * 5;
 		setInterval(() => {
 			if (this.timerOn)
@@ -51,4 +51,4 @@ class Progressbar {
 }
 
 
-export default Progressbar
+export default Scorekeeper

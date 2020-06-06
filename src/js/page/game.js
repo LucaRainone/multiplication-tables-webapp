@@ -60,10 +60,21 @@ function askQuestion(container, numbers, callback) {
 	});
 }
 
-function start(container, multitables, questionShown, userClicked, finished) {
-	questionShown();
+function start(
+	container,
+	multitables,
+	{
+		onQuestionShown = () => {
+		},
+		onUserClick = () => {
+		},
+		onFinish = () => {
+		}
+	}
+) {
+	onQuestionShown();
 	if (multitables.length === 0) {
-		finished();
+		onFinish();
 		return;
 	}
 	const numbers = multitables.pop();
@@ -71,9 +82,9 @@ function start(container, multitables, questionShown, userClicked, finished) {
 		if (!win) {
 			multitables.unshift(numbers);
 		}
-		userClicked(win);
+		onUserClick(win);
 		setTimeout(() => {
-			start(container, multitables, questionShown, userClicked, finished);
+			start(container, multitables, {onQuestionShown, onUserClick, onFinish});
 		}, 1500)
 	});
 }
