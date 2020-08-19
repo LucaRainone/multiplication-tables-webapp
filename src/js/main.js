@@ -35,14 +35,14 @@ function main() {
 			onQuestionShown() {
 				scorekeeper.startTimer();
 			},
-			onUserClick(win) {
+			onUserChoose(isCorrectChoice) {
 				scorekeeper.stopTimer();
-				win ? scorekeeper.addPointsForWin() : scorekeeper.addPointsForLose();
+				isCorrectChoice ? scorekeeper.addPointsForWin() : scorekeeper.addPointsForLose();
 
 			},
-			onFinish() {
+			async onFinish() {
 				scorekeeper.stopTimer();
-				ui.showNotice(locale.endMessage.replace(/%d/, `${scorekeeper.getPoints()}`));
+				await ui.showNotice(locale.endMessage.replace(/%d/, `${scorekeeper.getPoints()}`));
 				window.location.reload();
 			}
 		});

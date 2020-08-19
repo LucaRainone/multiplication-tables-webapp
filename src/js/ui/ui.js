@@ -1,6 +1,9 @@
 export default {
 	showNotice(text) {
-		alert(text)
+		return new Promise((res, rej) => {
+			alert(text);
+			res();
+		});
 	},
 	hide(element) {
 		element.classList.add('hidden');

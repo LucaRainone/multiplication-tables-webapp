@@ -66,7 +66,7 @@ function start(
 	{
 		onQuestionShown = () => {
 		},
-		onUserClick = () => {
+		onUserChoose = () => {
 		},
 		onFinish = () => {
 		}
@@ -82,9 +82,9 @@ function start(
 		if (!win) {
 			multitables.unshift(numbers);
 		}
-		onUserClick(win);
+		onUserChoose(win);
 		setTimeout(() => {
-			start(container, multitables, {onQuestionShown, onUserClick, onFinish});
+			start(container, multitables, {onQuestionShown, onUserChoose, onFinish});
 		}, 1500)
 	});
 }
