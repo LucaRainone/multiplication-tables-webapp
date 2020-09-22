@@ -27,7 +27,7 @@
     "browserify": "^16.5.1",
     "concurrently": "^5.2.0",
     "core-js": "^3.6.5",
-    "cypress": "^4.7.0",
+    "cypress": "^5.2.0",
     "cypress-localstorage-commands": "^1.1.10",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
