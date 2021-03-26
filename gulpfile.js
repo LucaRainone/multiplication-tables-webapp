@@ -3,7 +3,8 @@ const path       = require('path');
 const gulp       = require('gulp');
 const concat     = require('gulp-concat');
 const clean      = require('gulp-clean');
-const cssnano    = require('gulp-cssnano');
+const cssnano    = require('cssnano');
+const postcss    = require('gulp-postcss');
 const browserify = require('browserify');
 const source     = require('vinyl-source-stream');
 const buffer     = require('vinyl-buffer');
@@ -95,7 +96,7 @@ function lessTask() {
 		           paths : [path.join(__dirname, 'less')]
 	           }))
 	.pipe(concat(`style${suffix}.css`))
-	.pipe(cssnano())
+	.pipe(postcss([cssnano()]))
 	.pipe(gulp.dest('./dist/css'));
 }
 
