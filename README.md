@@ -1,3 +1,5 @@
+[![Build Status](https://www.travis-ci.com/LucaRainone/multiplication-tables-webapp.svg?branch=master)](https://www.travis-ci.com/LucaRainone/multiplication-tables-webapp)
+
 ## What
 This is a simple multiplication table quiz web app. Born as PWA playable offline.
 
