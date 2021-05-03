@@ -34,6 +34,6 @@ Test your app on http://localhost:9981/dist/index.html
 
 ### Build from source only
 
-Just run `npm run build --env production --basepath https://yourdoamin.com/path`
+Just run `npm run build --env production --basepath https://yourdomain.com/path`
 
 
