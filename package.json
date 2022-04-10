@@ -10,7 +10,7 @@
     "cy:run": "cypress run --spec cypress/integration/*",
     "cy:open": "cypress open",
     "test": "gulp && start-server-and-test server http://localhost:9981/src/index.html cy:run",
-    "deploy" : "gulp --env production --basepath https://lucarainone.github.io/multiplication-tables-webapp/dist/"
+    "deploy" : "gulp --env production --basepath https://lucarainone.github.io/multiplication-tables-webapp/dist/ && git add dist/* && git commit dist/* -m \"update dist\" && git push origin pages"
   },
   "repository": {
     "type": "git",
