@@ -1,0 +1,21 @@
+{
+  "short_name": "Tabelline",
+  "name": "Impara a memoria le tabelline",
+  "description": "Impara le tabelline con domande a risposta multipla",
+  "icons": [
+    {
+      "src": "img/icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "img/icon-64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    }
+  ],
+  "start_url": "/tabelline/?source=pwa",
+  "background_color": "#dc2ff7",
+  "display": "standalone",
+  "theme_color": "#dc2ff7"
+}
