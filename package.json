@@ -7,7 +7,7 @@
     "server": "node ./cypress/static-server",
     "build": "gulp --env production",
     "watch": "gulp watch",
-    "cy:run": "cypress run --spec cypress/integration/*",
+    "cy:run": "cypress run --spec cypress/e2e/*",
     "cy:open": "cypress open",
     "test": "gulp && start-server-and-test server http://localhost:9981/src/index.html cy:run"
   },
